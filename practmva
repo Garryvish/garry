@@ -1,0 +1,31 @@
+#apriori
+data(Groceries)
+data
+summary(Groceries)
+Groceries@itemInfo[1:20,]
+rules<-apriori(Groceries, parameter=list(supp=0.01, conf=0.2))
+inspect(rules[1:10,])
+install.packages("RColorBrewer")
+library(RColorBrewer)
+arules::itemFrequencyPlot(Groceries, topN=20,col=brewer.pal(8,"Pastel2"), main="Item frequency plot", type="relative", ylab="Item of fequency")
+
+
+#q2
+data<-list(c("Milk", "Bread", "Butter"),c("Milk", "Cheese", "Beer", "Eggs"),c("Bread", "Butter", "Cheese"),c("Milk", "Bread", "Cheese", "Butter"),c("Bread", "Milk", "Cheese", "Beer"))
+data
+trans<-as(data, "transactions")
+trans
+summary(trans)
+rules1<-apriori(trans, parameter=list(supp=0.3, conf=0.7))
+inspect(rules1)
+arules::itemFrequencyPlot(trans,col=brewer.pal(8,"Pastel2"), main="Item frequency plot", type="relative", ylab="Item of fequency")
+
+#3
+data<-list(c("Milk", "Egg", "Bread", "Butter"),c("Milk", "Butter", "Egg", "Ketchup"),c("Bread", "Butter", "Ketchup"),c("Milk", "Bread", "Butter"),c("Bread", "Butter", "Cookies"),c("Milk", "Bread", "Butter", "Cookies"),c("Milk", "Cookies"),c("Milk", "Bread", "Butter"),c("Bread", "Butter", "Egg", "Cookies"),c("Milk", "Butter", "Bread"),c("Milk", "Bread", "Butter"),c("Milk", "Bread", "Cookies", "Ketchup"))
+data
+trans<-as(data, "transactions")
+trans
+summary(trans)
+rules2<-apriori(trans, parameter=list(supp=0.33, conf=0.7))
+inspect(rules2)
+arules::itemFrequencyPlot(trans,col=brewer.pal(8,"Pastel2"), main="Item frequency plot", type="relative", ylab="Item of fequency")
